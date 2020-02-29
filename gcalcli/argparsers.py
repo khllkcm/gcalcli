@@ -211,7 +211,7 @@ def get_start_end_parser():
 def get_search_parser():
     # requires search text, optional start and end filters
     search_parser = argparse.ArgumentParser(add_help=False)
-    search_parser.add_argument('text', nargs=1, type=utils._u)
+    search_parser.add_argument('text', nargs=1)
     search_parser.add_argument(
             'start', type=utils.get_time_from_str, nargs='?')
     search_parser.add_argument('end', type=utils.get_time_from_str, nargs='?')
