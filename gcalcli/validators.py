@@ -2,7 +2,6 @@ import re
 
 from gcalcli.exceptions import ValidationError
 from gcalcli.utils import REMINDER_REGEX, get_time_from_str
-from six.moves import input
 
 # TODO: in the future, pull these from the API
 # https://developers.google.com/calendar/v3/reference/colors
