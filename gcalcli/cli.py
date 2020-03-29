@@ -34,7 +34,7 @@ from gcalcli.printer import Printer, valid_color_name
 from gcalcli.utils import _u
 from gcalcli.validators import (
         PARSABLE_DATE, REMINDER, STR_ALLOW_EMPTY, STR_NOT_EMPTY,
-        PARSABLE_DURATION, get_input
+        PARSABLE_DURATION, VALID_CATEGORY, get_input
 )
 
 CalName = namedtuple('CalName', ['name', 'color'])
@@ -62,6 +62,9 @@ def parse_cal_names(cal_names):
 def run_add_prompt(parsed_args, printer):
     if parsed_args.title is None:
         parsed_args.title = get_input(printer, 'Title: ', STR_NOT_EMPTY)
+    if parsed_args.category is None:
+        parsed_args.category = get_input(printer, 'Category: ', VALID_CATEGORY)
+    parsed_args.title = parsed_args.title + parsed_args.category
     if parsed_args.where is None:
         parsed_args.where = get_input(
             printer, 'Location: ', STR_ALLOW_EMPTY)

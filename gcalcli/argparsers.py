@@ -357,6 +357,7 @@ def get_argument_parser():
                  'peacock, graphite, blueberry, basil, tomato.'
     )
     add.add_argument('--title', default=None, type=str, help='Event title')
+    add.add_argument('--category', default=None, type=str, help='Event category')
     add.add_argument(
             '--who', default=[], type=str, action='append', help='Event title')
     add.add_argument('--where', default=None, type=str, help='Event location')

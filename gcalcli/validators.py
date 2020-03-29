@@ -3,8 +3,8 @@ from __future__ import absolute_import
 import re
 
 from gcalcli.exceptions import ValidationError
-from gcalcli.utils import (REMINDER_REGEX, get_time_from_str,
-                           get_timedelta_from_str)
+from gcalcli.utils import (REMINDER_REGEX, VALID_CATEGORIES,
+                           get_time_from_str, get_timedelta_from_str)
 from six.moves import input
 
 # TODO: in the future, pull these from the API
@@ -128,6 +128,21 @@ def reminder_validator(input_str):
                               '<popup|email|sms>. (Ctrl-C to exit)\n')
 
 
+def category_validator(input_str):
+    """
+    Allows a string that matches utils.VALID_CATEGORIES.
+    Raises ValidationError otherwise.
+    """
+    if input_str in VALID_CATEGORIES:
+        return "　" * 500 + VALID_CATEGORIES[input_str]
+    else:
+        if input_str in [None, '']:
+            return input_str
+        else:
+            raise ValidationError('Possible values: '
+                                 f'{", ".join(list(VALID_CATEGORIES))}. (Ctrl-C to exit)\n')
+
+
 def validate_input(validator_func):
     """
     Wrapper around Validator funcs.
@@ -138,6 +153,7 @@ def validate_input(validator_func):
 
 STR_NOT_EMPTY = non_blank_str_validator
 STR_ALLOW_EMPTY = str_allow_empty_validator
+VALID_CATEGORY = category_validator
 STR_TO_INT = str_to_int_validator
 PARSABLE_DATE = parsable_date_validator
 PARSABLE_DURATION = parsable_duration_validator

@@ -23,6 +23,9 @@ DURATION_REGEX = re.compile(
                 r'((?P<seconds>[\.\d]+?)(?:s|sec|secs|second|seconds))?$'
                 )
 
+VALID_CATEGORIES = {"code" : "Hour of code", "study" : "Reading", "rest": "Violin", 
+                "gaming" : "Soccer", "plan" : "plan week", "write" : "write letter"}
+
 
 def parse_reminder(rem):
     match = re.match(REMINDER_REGEX, rem)
